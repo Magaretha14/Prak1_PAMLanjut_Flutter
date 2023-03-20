@@ -22,9 +22,7 @@ class LoginPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RegisterPage(
-                      name: name,
-                    ),
+                    builder: (context) => const RegisterPage(),
                   ),
                 );
               },

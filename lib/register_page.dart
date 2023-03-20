@@ -1,25 +1,66 @@
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key, required this.name});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
-  final String name;
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+  String? name;
+  String? email;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register'),
-      ),
-      body: Column(children: [
-        Center(
-          child: Text(
-            'Nama: $name',
-            style: const TextStyle(
-                fontSize: 24, color: Colors.pink, fontWeight: FontWeight.bold),
+        appBar: AppBar(
+          title: const Text('Register'),
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Nama',
+                      hintText: 'Masukkan Nama',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Nama tidak boleh kosong';
+                      }
+                    },
+                    onSaved: (value) {
+                      name = value;
+                    },
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      hintText: 'Masukkan Email',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email tidak boleh kosong';
+                      }
+                    },
+                    onSaved: (value) {
+                      email = value;
+                    },
+                  ),
+                  ElevatedButton(
+                    child: const Text('Register'),
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            ),
           ),
-        )
-      ]),
-    );
+        ));
   }
 }
