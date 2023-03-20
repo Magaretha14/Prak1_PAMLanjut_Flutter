@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pam_praksatu/first_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -57,7 +58,21 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   ElevatedButton(
                     child: const Text('Register'),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FirstPage(
+                              name: name,
+                              email: email,
+                            ),
+                          ),
+                        );
+                      }
+                      setState(() {});
+                    },
                   )
                 ],
               ),
