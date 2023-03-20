@@ -27,13 +27,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Nama',
-                      hintText: 'Masukkan Nama',
-                    ),
+                        hintText: 'Masukkan Nama',
+                        border: OutlineInputBorder(),
+                        prefix: Icon(Icons.person)),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Nama tidak boleh kosong';
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       name = value;
@@ -41,13 +42,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Email',
-                      hintText: 'Masukkan Email',
-                    ),
+                        hintText: 'Masukkan Email',
+                        border: OutlineInputBorder(),
+                        prefix: Icon(Icons.email)),
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Email tidak boleh kosong';
+                      if (!value!.contains('@')) {
+                        return 'Format email salah';
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       email = value;
